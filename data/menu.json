@@ -1,0 +1,56 @@
+{
+    "kebabai" : [{
+        "pavadinimas" : "Kebabas su vištiena",
+        "kaina" : 5.56,
+        "img" : "lol.jpg"
+        },
+        {
+        "pavadinimas" : "Kebabas su jautiena",
+        "kaina" : 7.50,
+        "img" : "lol.jpg"
+        },
+        {
+        "pavadinimas" : "Kebabas su kiauliena",
+        "kaina" : 5.00,
+        "img" : "lol.jpg"
+        }
+        ],
+    "papildai": [{
+            "pavadinimas": "Sūris",
+            "kaina" : 0.50,
+            "img" : "lol.jpg"
+        },
+        {
+            "pavadinimas": "Česnakinis padažas",
+            "kaina" : 0.50,
+            "img" : "lol.jpg"
+        },
+        {
+            "pavadinimas": "Švelnus padažas",
+            "kaina" : 0.50,
+            "img" : "lol.jpg"
+        },
+        {
+            "pavadinimas": "Aštrus padažas",
+            "kaina" : 0.50,
+            "img" : "lol.jpg"
+        },
+        {
+            "pavadinimas": "Papildoma mėsa",
+            "kaina" : 1.50,
+            "img" : "lol.jpg"
+        },
+        {
+            "pavadinimas": "Čipsai",
+            "kaina" : 0.50,
+            "img" : "lol.jpg"
+        }
+    ],
+    "garnyras" : [
+        {
+            "pavadinimas": "Coca-Cola 500 ml.",
+            "kaina" : 2.10,
+            "img" : "lol.jpg"
+        }
+    ]
+}
