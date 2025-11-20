@@ -112,9 +112,10 @@ class Pradinis(ctk.CTkFrame):
 
 # ---------- Page 2 ----------
 class Uzsakymas(ctk.CTkFrame):
+
     def __init__(self, parent, controller):
         super().__init__(parent)
-
+        self.controller = controller
 
         # Configure the grid of the main window
         self.grid_rowconfigure(0, weight=1)
@@ -122,14 +123,16 @@ class Uzsakymas(ctk.CTkFrame):
         self.grid_columnconfigure(1, weight=1)   # 33%
 
         # LEFT panel (0.66 width)
-        left = ctk.CTkFrame(self, fg_color="#444444")
-        left.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+        meniu = ctk.CTkFrame(self, fg_color="#444444")
+        meniu.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
 
         # RIGHT panel (0.33 width)
-        right = ctk.CTkScrollableFrame(self, fg_color="#444444")
-        right.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
+        desine = ctk.CTkFrame(self, fg_color="#444444")
+        desine.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
 
-        tabs = ctk.CTkTabview(left)
+        self.krepsys = ctk.CTkScrollableFrame(desine,fg_color="#222222")
+        self.krepsys.pack(padx=20, pady=20)
+        tabs = ctk.CTkTabview(meniu)
         tabs.pack(fill="both", expand=True, padx=20, pady=20)
 
         # Create tabs
@@ -145,26 +148,42 @@ class Uzsakymas(ctk.CTkFrame):
             ctk.CTkButton(
                 scroll_kebabai,
                 text=patiekalai["kebabai"][i]["pavadinimas"],
-                command=lambda: controller.krepselis.append(kebabas(patiekalai["kebabai"][i]))
+                command=lambda idx=i: self.prideti_preke(kebabas(patiekalai["kebabai"][idx]))
                 ).pack(pady = 10)
 
 
         ctk.CTkLabel(scroll_uzkandziai, text="Settings options here").pack(pady=10)
 
-        ctk.CTkLabel(right, textvariable=controller.vardas).pack(pady=10)
+        ctk.CTkLabel(desine, textvariable=controller.vardas).pack(pady=10)
         ctk.CTkButton(
-            right,
-            text="Krepšelis",
-            command=lambda: print(controller.krepselis)
+           desine,
+            text="Tuštinti krepšeli",
+            command=self.valyti_krepsy
         ).pack(pady=10)
+
+
         button = ctk.CTkButton(
-            right,
+            desine,
             text="Back to Home",
             command=lambda: controller.show_frame(Pradinis)
         )
         button.pack(pady=10)
 
+    def valyti_krepsy(self):
+        self.controller.krepselis = []
+        self.atnaujinti_krepsy()
 
+    def atnaujinti_krepsy(self):
+        for widget in self.krepsys.winfo_children():
+            widget.destroy()
+
+        for preke in self.controller.krepselis:
+            ctk.CTkLabel(self.krepsys, text=preke.pavadinimas).pack(anchor="w")
+
+    def prideti_preke(self, preke):
+        print(preke.pavadinimas)
+        self.controller.krepselis.append(preke)
+        self.atnaujinti_krepsy()
 
 # ---------- Run app ----------
 if __name__ == "__main__":

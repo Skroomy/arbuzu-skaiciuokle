@@ -13,6 +13,11 @@
         "pavadinimas" : "Kebabas su kiauliena",
         "kaina" : 5.00,
         "img" : "lol.jpg"
+        },
+        {
+        "pavadinimas" : "Kebabas su katiena lekštėje",
+        "kaina" : 5.00,
+        "img" : "lol.jpg"
         }
         ],
     "papildai": [{
