@@ -3,7 +3,7 @@ import customtkinter as ctk
 
 #Maisto prekiu klases
 class kebabas:
-    def __init__(self, info, papildas):
+    def __init__(self, info, papildas=[]):
         self.pavadinimas = info["pavadinimas"]
         self.kaina = info["kaina"]
         self.papildas = papildas
@@ -21,6 +21,9 @@ menu_file = filesystem.File("menu")
 #ji nuskaityti
 patiekalai = menu_file.read_json()
 
+#
+uzsakovo_vardas = ""
+
 class App(ctk.CTk):
     
     def __init__(self):
@@ -30,7 +33,7 @@ class App(ctk.CTk):
         self.title("Užsakymo sąskaitos skaičiuoklė")
         self.geometry("1280x720")
 
-        #sukurti langam kuris laikis visus kitus frameus
+        #sukurti langam kuris laikis visus kitus langus
         container = ctk.CTkFrame(self)
         container.pack(fill="both", expand=True)
 
@@ -39,13 +42,13 @@ class App(ctk.CTk):
         container.grid_columnconfigure(0, weight=1)
         
         #kintamieji kuriuos norim matyti per visus puslapius
-        self.user_name = ctk.StringVar(value="")
-
+        self.vardas = ctk.StringVar(value="")
+        self.krepselis = []
         # Biblioteka kuri laikis visus puslapius
         self.frames = {}
 
-        # Create all pages and stack them in the same container
-        for PageClass in (Pradinis, SettingsPage):
+        #Sukurti visus langus
+        for PageClass in (Pradinis, Uzsakymas):
             page = PageClass(parent=container, controller=self)
             self.frames[PageClass] = page
 
@@ -102,36 +105,71 @@ class Pradinis(ctk.CTkFrame):
             return
 
         self.warning_label.configure(text="")
-        self.controller.user_name.set(name)
-        self.controller.show_frame(SettingsPage)
+        self.controller.vardas.set(name)
+        print(name)
+        self.controller.show_frame(Uzsakymas)
 
 
 # ---------- Page 2 ----------
-class SettingsPage(ctk.CTkFrame):
+class Uzsakymas(ctk.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent)
 
-        label = ctk.CTkLabel(self, text="Settings Page", font=("Arial", 24))
-        label.pack(pady=20)
 
-        description = ctk.CTkLabel(
-            self,
-            text="This is the settings page.\nClick the button to go back Home.",
-        )
-        description.pack(pady=10)
+        # Configure the grid of the main window
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=2)   # 66%
+        self.grid_columnconfigure(1, weight=1)   # 33%
 
+        # LEFT panel (0.66 width)
+        left = ctk.CTkFrame(self, fg_color="#444444")
+        left.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+
+        # RIGHT panel (0.33 width)
+        right = ctk.CTkScrollableFrame(self, fg_color="#444444")
+        right.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
+
+        tabs = ctk.CTkTabview(left)
+        tabs.pack(fill="both", expand=True, padx=20, pady=20)
+
+        # Create tabs
+        tab_kebabai = tabs.add("Kebabai")
+        scroll_kebabai = ctk.CTkScrollableFrame(tab_kebabai, width=400, height=300)
+        scroll_kebabai.pack(fill="both", expand=True)
+
+        tab_uzkandziai = tabs.add("Užkandžiai")
+        scroll_uzkandziai = ctk.CTkScrollableFrame(tab_uzkandziai, width=400, height=300)
+        scroll_uzkandziai.pack(fill="both", expand=True)
+
+        for i in range(len(patiekalai["kebabai"])):
+            ctk.CTkButton(
+                scroll_kebabai,
+                text=patiekalai["kebabai"][i]["pavadinimas"],
+                command=lambda: controller.krepselis.append(kebabas(patiekalai["kebabai"][i]))
+                ).pack(pady = 10)
+
+
+        ctk.CTkLabel(scroll_uzkandziai, text="Settings options here").pack(pady=10)
+
+        ctk.CTkLabel(right, textvariable=controller.vardas).pack(pady=10)
+        ctk.CTkButton(
+            right,
+            text="Krepšelis",
+            command=lambda: print(controller.krepselis)
+        ).pack(pady=10)
         button = ctk.CTkButton(
-            self,
+            right,
             text="Back to Home",
             command=lambda: controller.show_frame(Pradinis)
         )
         button.pack(pady=10)
 
 
+
 # ---------- Run app ----------
 if __name__ == "__main__":
     ctk.set_appearance_mode("dark")        # optional
-    ctk.set_default_color_theme("blue")    # optional
+    ctk.set_default_color_theme("green")    # optional
 
     app = App()
     app.mainloop()
