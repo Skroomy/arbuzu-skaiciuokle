@@ -2,7 +2,7 @@
     "kebabai" : [{
         "pavadinimas" : "Kebabas su vištiena",
         "kaina" : 5.56,
-        "img" : "lol.jpg"
+        "img" : "C:/Users/Eridas/Documents/GitHub/arbuzu-skaiciuokle/data/assets/beefkebab.png"
         },
         {
         "pavadinimas" : "Kebabas su jautiena",
@@ -15,7 +15,7 @@
         "img" : "lol.jpg"
         },
         {
-        "pavadinimas" : "Kebabas su katiena lekštėje",
+        "pavadinimas" : "Kebabas su katiena",
         "kaina" : 5.00,
         "img" : "lol.jpg"
         }
