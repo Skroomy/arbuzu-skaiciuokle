@@ -207,7 +207,7 @@ class Uzsakymas(ctk.CTkFrame):
         popup.overrideredirect(True)
         # Lango centravimas
         popup_width = 300
-        popup_height = 400
+        popup_height = 350
         main_x = self.controller.winfo_x()
         main_y = self.controller.winfo_y()
         main_width = self.controller.winfo_width()
@@ -272,7 +272,6 @@ class Uzsakymas(ctk.CTkFrame):
     def moketi(self):
         popup = ctk.CTkToplevel(self)
         popup.title("Mokėjimas")
-        popup.geometry("300x400")
         popup.transient(self)
         popup.grab_set()
 
@@ -302,8 +301,10 @@ class Uzsakymas(ctk.CTkFrame):
 
 # ---------- Run app ----------
 if __name__ == "__main__":
-    ctk.set_appearance_mode("dark")        # optional
-    ctk.set_default_color_theme("green")    # optional
+    print(filesystem.get_base_path() + "data\\spalvos.json")
+    ctk.set_default_color_theme(filesystem.get_base_path() + "data\\spalvos.json")
+    #ctk.set_default_color_theme("blue")
+    ctk.set_appearance_mode("light")        # optional
 
     app = App()
     app.mainloop()
