@@ -25,8 +25,11 @@ patiekalai = menu_file.read_json()
 
 #Nuotrauku nuskaitymas, grazina ctk image
 def open_img(name,  size):
-    pil_image = Image.open(filesystem.get_base_path() + "data\\assets\\" + name)
-    return ctk.CTkImage(pil_image,pil_image,size=size)
+    try:
+        pil_image = Image.open(filesystem.get_base_path() + "data\\assets\\" + name)
+        return ctk.CTkImage(pil_image,pil_image,size=size)
+    except:
+        print("Nepavyko atidaryti nuotraukos " + name)
 
 
 class App(ctk.CTk):
@@ -37,6 +40,7 @@ class App(ctk.CTk):
         #nustatyti title ir dydi lango
         self.title("Užsakymo sąskaitos skaičiuoklė")
         self.geometry("1280x720")
+        self.iconbitmap(filesystem.get_base_path() + "data\\assets\\arbuzas.ico")
 
         #sukurti langam kuris laikis visus kitus langus
         container = ctk.CTkFrame(self)
@@ -73,17 +77,16 @@ class Pradinis(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
 
-        langas = ctk.CTkFrame(self)
+        langas = ctk.CTkFrame(self, corner_radius=25)
         langas.place(relx=0.5, rely=0.5, anchor="center")
 
-        label = ctk.CTkLabel(langas, text="Naujas užsakymas", font=("Arial", 24))
-        label.pack(padx=50, pady=25)
-
-        description = ctk.CTkLabel(
-            langas,
-            text="Įveskite savo vardą",
-        )
-        description.pack(pady=10)
+        ctk.CTkLabel(
+            master=langas, 
+            text="",           # IMPORTANT: Set text to an empty string
+            image=open_img("logo.png",(250,250)),   # Pass the prepared CTkImage object
+            fg_color="transparent").pack()
+        ctk.CTkLabel(langas, text="Naujas užsakymas", font=("Arial", 24)).pack(padx=50, pady=10)
+        ctk.CTkLabel(langas,text="Įveskite savo vardą").pack(pady=10)
 
 
         self.name_entry = ctk.CTkEntry(langas, placeholder_text="Vardenis")
@@ -110,7 +113,6 @@ class Pradinis(ctk.CTkFrame):
         self.controller.show_frame(Uzsakymas)
 
 
-# ---------- Page 2 ----------
 class Uzsakymas(ctk.CTkFrame):
 
     def __init__(self, parent, controller):
@@ -253,12 +255,23 @@ class Uzsakymas(ctk.CTkFrame):
             suma += i.kaina
         return round(suma,2)
 
+    def krepselio_elemento_logika(self, idx):
+        self.controller.krepselis.pop(idx)
+        self.atnaujinti_krepsy()
+
+
     def atnaujinti_krepsy(self):
         for widget in self.krepsys.winfo_children():
             widget.destroy()
 
         for preke in self.controller.krepselis:
-            ctk.CTkLabel(self.krepsys, text=preke.pavadinimas + f"   {preke.kaina:.2f}€", font=("Arial", 14)).pack(anchor="w")
+            ctk.CTkButton(
+                self.krepsys,
+                text=preke.pavadinimas + f"   {preke.kaina:.2f}€",
+                font=("Arial", 14),
+                anchor="w",
+                command=lambda idx=self.controller.krepselis.index(preke): self.krepselio_elemento_logika(idx)
+            ).pack(anchor="w", fill="x", padx=10)
             if isinstance(preke, kebabas):
                 for papildas in preke.papildai:
                     ctk.CTkLabel(self.krepsys, text=f"  + {papildas['pavadinimas']} (+{papildas['kaina']:.2f}€)", font=("Arial", 12)).pack(anchor="w", padx=(10,0))
@@ -299,11 +312,8 @@ class Uzsakymas(ctk.CTkFrame):
         ctk.CTkButton(popup, text="Sumokėta", command=sumoketa).pack(pady=5)
 
 
-# ---------- Run app ----------
 if __name__ == "__main__":
-    print(filesystem.get_base_path() + "data\\spalvos.json")
     ctk.set_default_color_theme(filesystem.get_base_path() + "data\\spalvos.json")
-    #ctk.set_default_color_theme("blue")
     ctk.set_appearance_mode("light")        # optional
 
     app = App()
