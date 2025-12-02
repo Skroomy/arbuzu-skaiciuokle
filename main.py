@@ -82,15 +82,15 @@ class Ivadinis(ctk.CTkFrame):
         ctk.CTkLabel(
             langas,
             text="Jokūbas Kriaučiūnas EEI-5/3 | "
-            ).pack(pady=10)
+            ).pack(pady=2)
         ctk.CTkLabel(
             langas,
             text="Timur Valužis EEI-5/3 | "
-            ).pack(pady=10)
+            ).pack(pady=2)
         ctk.CTkLabel(
             langas,
             text="Arnas Makutėnas EEI-5/4 | "
-            ).pack(pady=10)
+            ).pack(pady=2)
 
         mygtukas = ctk.CTkButton(
             langas,
