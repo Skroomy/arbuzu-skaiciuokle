@@ -57,20 +57,47 @@ class App(ctk.CTk):
         self.frames = {}
 
         #Sukurti visus langus
-        for PageClass in (Pradinis, Uzsakymas):
+        for PageClass in (Pradinis, Uzsakymas, Ivadinis):
             page = PageClass(parent=container, controller=self)
             self.frames[PageClass] = page
 
             page.grid(row=0, column=0, sticky="nsew")
 
         #Rodyti pradini langa
-        self.show_frame(Pradinis)
+        self.show_frame(Ivadinis)
 
     def show_frame(self, page_class):
         frame = self.frames[page_class]
         frame.tkraise()#perkelti langa i virsu
 
+class Ivadinis(ctk.CTkFrame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+        self.controller = controller
 
+        langas = ctk.CTkFrame(self, corner_radius=25)
+        langas.place(relx=0.5, rely=0.5, anchor="center")
+
+        ctk.CTkLabel(langas, text="Komanda \"Arbūz\" ", font=("Arial", 24)).pack(padx=50, pady=10)
+        ctk.CTkLabel(
+            langas,
+            text="Jokūbas Kriaučiūnas EEI-5/3 | "
+            ).pack(pady=10)
+        ctk.CTkLabel(
+            langas,
+            text="Timur Valužis EEI-5/3 | "
+            ).pack(pady=10)
+        ctk.CTkLabel(
+            langas,
+            text="Arnas Makutėnas EEI-5/4 | "
+            ).pack(pady=10)
+
+        mygtukas = ctk.CTkButton(
+            langas,
+            text="Testi",
+            command=lambda: self.controller.show_frame(Pradinis)
+        )
+        mygtukas.pack(pady=10)
 
 class Pradinis(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -82,8 +109,8 @@ class Pradinis(ctk.CTkFrame):
 
         ctk.CTkLabel(
             master=langas, 
-            text="",           # IMPORTANT: Set text to an empty string
-            image=open_img("logo.png",(250,250)),   # Pass the prepared CTkImage object
+            text="",
+            image=open_img("logo.png",(250,250)),
             fg_color="transparent").pack()
         ctk.CTkLabel(langas, text="Naujas užsakymas", font=("Arial", 24)).pack(padx=50, pady=10)
         ctk.CTkLabel(langas,text="Įveskite savo vardą").pack(pady=10)
@@ -125,10 +152,10 @@ class Uzsakymas(ctk.CTkFrame):
         self.grid_columnconfigure(1, weight=1)   # 25%
 
         #meniu langas
-        meniu = ctk.CTkFrame(self, fg_color="#444444")
+        meniu = ctk.CTkFrame(self, fg_color="#ebd3a7")
         meniu.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         #uzsakymo langas
-        desine = ctk.CTkFrame(self, fg_color="#444444")
+        desine = ctk.CTkFrame(self, fg_color="#ebd3a7")
         desine.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
 
         ctk.CTkLabel(meniu,text="Meniu", font=("Arial", 24)).pack(pady=(15,0))
@@ -161,9 +188,9 @@ class Uzsakymas(ctk.CTkFrame):
 
 
         #krepsio frame
-        ctk.CTkLabel(desine,text="Krepšelis", font=("Arial", 16)).pack(pady=(15,0))
+        ctk.CTkLabel(desine,text="Krepšelis", font=("Arial", 16), fg_color="#f0ad32", corner_radius=5).pack(pady=(15,0), fill="x", padx=10)
         
-        self.krepsys = ctk.CTkScrollableFrame(desine,fg_color="#444444")
+        self.krepsys = ctk.CTkScrollableFrame(desine,fg_color="#ebd3a7")
         self.krepsys.pack(fill="both", expand=True, padx=10, pady=(10,0))
 
         self.sumos_mygtukas = ctk.CTkButton(
@@ -194,10 +221,11 @@ class Uzsakymas(ctk.CTkFrame):
                 langas,
                 text=patiekalai[skiltis][i]["pavadinimas"] + "\n" + f"{patiekalai[skiltis][i]['kaina']:.2f}€",
                 command=command,
-                image=open_img(patiekalai[skiltis][i]["img"], (100,100)),
+                image=open_img(patiekalai[skiltis][i]["img"], (100 + ( 50 if klase is kebabas else 0 ),150)),
                 width=275,
                 height=50,
-                fg_color="#444444"
+                fg_color="#ebd3a7",
+                font=("Arial", 14)
                 ).grid(row=eile, column=stulpelis, sticky="nsew", padx=10, pady=10)
 
 
@@ -218,6 +246,7 @@ class Uzsakymas(ctk.CTkFrame):
         y = main_y + (main_height - popup_height) // 2
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
         ctk.CTkLabel(popup, text="Pasirinkite priedus", font=("Arial", 16)).pack(pady=10)
+        popup.configure(fg_color="#fce5bb")
 
         papild_sarasas = patiekalai["papildai"]
         checkboxes = []
@@ -270,6 +299,7 @@ class Uzsakymas(ctk.CTkFrame):
                 text=preke.pavadinimas + f"   {preke.kaina:.2f}€",
                 font=("Arial", 14),
                 anchor="w",
+                fg_color="transparent",
                 command=lambda idx=self.controller.krepselis.index(preke): self.krepselio_elemento_logika(idx)
             ).pack(anchor="w", fill="x", padx=10)
             if isinstance(preke, kebabas):
@@ -299,9 +329,13 @@ class Uzsakymas(ctk.CTkFrame):
         x = main_x + (main_width - popup_width) // 2
         y = main_y + (main_height - popup_height) // 2
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
+        popup.configure(fg_color="#fce5bb")
 
-        ctk.CTkLabel(popup, text="Užsakymas vardu: " + self.controller.vardas, font=("Arial", 16)).pack(pady=5)
-        ctk.CTkLabel(popup, text=f"Mokėti {self.krepselio_suma():.2f}€").pack(fill="x", padx=10, pady=5)
+        ctk.CTkLabel(popup, text="Užsakymas vardu: " + self.controller.vardas.capitalize(), font=("Arial", 16)).pack(pady=5)
+        if self.krepselio_suma() == 0:
+            ctk.CTkLabel(popup, text=f"Užsakymas tuščias").pack(fill="x", padx=10, pady=5)
+        else:
+            ctk.CTkLabel(popup, text=f"Mokėti: {self.krepselio_suma():.2f}€").pack(fill="x", padx=10, pady=5)
         def sumoketa():
             popup.destroy()
             self.valyti_krepsy()
@@ -309,7 +343,7 @@ class Uzsakymas(ctk.CTkFrame):
 
 
 
-        ctk.CTkButton(popup, text="Sumokėta", command=sumoketa).pack(pady=5)
+        ctk.CTkButton(popup, text="Baigti", command=sumoketa).pack(pady=5)
 
 
 if __name__ == "__main__":
