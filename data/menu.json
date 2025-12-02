@@ -2,60 +2,127 @@
     "kebabai" : [{
         "pavadinimas" : "Kebabas su vištiena",
         "kaina" : 5.56,
-        "img" : "C:/Users/Eridas/Documents/GitHub/arbuzu-skaiciuokle/data/assets/beefkebab.png"
+        "img" : "beefkebab.png"
         },
         {
         "pavadinimas" : "Kebabas su jautiena",
         "kaina" : 7.50,
-        "img" : "lol.jpg"
+        "img" : "beefkebab.png"
         },
         {
         "pavadinimas" : "Kebabas su kiauliena",
         "kaina" : 5.00,
-        "img" : "lol.jpg"
+        "img" : "beefkebab.png"
         },
         {
         "pavadinimas" : "Kebabas su katiena",
         "kaina" : 5.00,
-        "img" : "lol.jpg"
+        "img" : "beefkebab.png"
+        },
+        {
+        "pavadinimas" : "Veganiškas kebabosas",
+        "kaina" : 5.00,
+        "img" : "beefkebab.png"
         }
         ],
     "papildai": [{
             "pavadinimas": "Sūris",
             "kaina" : 0.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         },
         {
             "pavadinimas": "Česnakinis padažas",
             "kaina" : 0.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         },
         {
             "pavadinimas": "Švelnus padažas",
             "kaina" : 0.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         },
         {
             "pavadinimas": "Aštrus padažas",
             "kaina" : 0.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         },
         {
             "pavadinimas": "Papildoma mėsa",
             "kaina" : 1.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         },
         {
             "pavadinimas": "Čipsai",
             "kaina" : 0.50,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
         }
     ],
-    "garnyras" : [
+    "uzkandziai" : [
         {
-            "pavadinimas": "Coca-Cola 500 ml.",
+            "pavadinimas": "Coca-Cola",
             "kaina" : 2.10,
-            "img" : "lol.jpg"
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Coca-cola Zero",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Fanta",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Sprite",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Gira",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Arbuzo skiltelė",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Ledų kokteilis",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Bulvytės fri",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Svogunų žiedai",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Chicken nuggets",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
+        },
+        {
+            "pavadinimas": "Cėzario salotos",
+            "kaina" : 2.10,
+            "img" : "beefkebab.png"
+            
         }
+        
     ]
 }
