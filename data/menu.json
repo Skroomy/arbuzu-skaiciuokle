@@ -1,126 +1,109 @@
 {
     "kebabai" : [{
         "pavadinimas" : "Kebabas su vištiena",
-        "kaina" : 5.56,
-        "img" : "beefkebab.png"
+        "kaina" : 6.90,
+        "img" : "vistiena.png"
         },
         {
         "pavadinimas" : "Kebabas su jautiena",
-        "kaina" : 7.50,
-        "img" : "beefkebab.png"
+        "kaina" : 7.90,
+        "img" : "jautiena.png"
         },
         {
         "pavadinimas" : "Kebabas su kiauliena",
-        "kaina" : 5.00,
-        "img" : "beefkebab.png"
+        "kaina" : 7.50,
+        "img" : "kiauliena.png"
         },
         {
         "pavadinimas" : "Kebabas su katiena",
         "kaina" : 5.00,
-        "img" : "beefkebab.png"
-        },
-        {
-        "pavadinimas" : "Veganiškas kebabosas",
-        "kaina" : 5.00,
-        "img" : "beefkebab.png"
+        "img" : "katiena.png"
         }
         ],
     "papildai": [{
             "pavadinimas": "Sūris",
-            "kaina" : 0.50,
-            "img" : "beefkebab.png"
+            "kaina" : 1.50
         },
         {
             "pavadinimas": "Česnakinis padažas",
-            "kaina" : 0.50,
-            "img" : "beefkebab.png"
+            "kaina" : 0.50
         },
         {
             "pavadinimas": "Švelnus padažas",
-            "kaina" : 0.50,
-            "img" : "beefkebab.png"
+            "kaina" : 0.50
         },
         {
             "pavadinimas": "Aštrus padažas",
-            "kaina" : 0.50,
-            "img" : "beefkebab.png"
+            "kaina" : 0.50
         },
         {
             "pavadinimas": "Papildoma mėsa",
-            "kaina" : 1.50,
-            "img" : "beefkebab.png"
+            "kaina" : 1.50
         },
         {
-            "pavadinimas": "Čipsai",
-            "kaina" : 0.50,
-            "img" : "beefkebab.png"
+            "pavadinimas": "Traškučiai",
+            "kaina" : 1.00
         }
     ],
     "uzkandziai" : [
         {
-            "pavadinimas": "Coca-Cola",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
-            
-        },
-        {
-            "pavadinimas": "Coca-cola Zero",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "pavadinimas": "Cocosa-Cola",
+            "kaina" : 2.50,
+            "img" : "coca.png"
             
         },
         {
             "pavadinimas": "Fanta",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 2.50,
+            "img" : "fanta.png"
             
         },
         {
             "pavadinimas": "Sprite",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 2.50,
+            "img" : "sprite.png"
             
         },
         {
             "pavadinimas": "Gira",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 2.50,
+            "img" : "kvass.png"
             
         },
         {
             "pavadinimas": "Arbuzo skiltelė",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 4.20,
+            "img" : "arbuzuskilteles.png"
             
         },
         {
             "pavadinimas": "Ledų kokteilis",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 3.00,
+            "img" : "milkshake.png"
             
         },
         {
             "pavadinimas": "Bulvytės fri",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 3.50,
+            "img" : "bulvytes.png"
             
         },
         {
             "pavadinimas": "Svogunų žiedai",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 3.50,
+            "img" : "ziedai.png"
             
         },
         {
             "pavadinimas": "Chicken nuggets",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 4.50,
+            "img" : "nuggets.png"
             
         },
         {
             "pavadinimas": "Cėzario salotos",
-            "kaina" : 2.10,
-            "img" : "beefkebab.png"
+            "kaina" : 3.50,
+            "img" : "caeser.png"
             
         }
         

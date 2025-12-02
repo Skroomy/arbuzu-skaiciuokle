@@ -192,7 +192,7 @@ class Uzsakymas(ctk.CTkFrame):
 
             ctk.CTkButton(
                 langas,
-                text=patiekalai[skiltis][i]["pavadinimas"] + "\n" + f"{patiekalai[skiltis][i]["kaina"]:.2f}€",
+                text=patiekalai[skiltis][i]["pavadinimas"] + "\n" + f"{patiekalai[skiltis][i]['kaina']:.2f}€",
                 command=command,
                 image=open_img(patiekalai[skiltis][i]["img"], (100,100)),
                 width=275,
