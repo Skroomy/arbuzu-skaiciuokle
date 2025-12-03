@@ -81,16 +81,16 @@ class Ivadinis(ctk.CTkFrame):
         ctk.CTkLabel(langas, text="Komanda \"Arbūz\" ", font=("Arial", 24)).pack(padx=50, pady=10)
         ctk.CTkLabel(
             langas,
-            text="Jokūbas Kriaučiūnas EEI-5/3 | "
-            ).pack(pady=2)
+            text="Jokūbas Kriaučiūnas EEI-5/3 | Meniu ir krepšelio vaizdavimas ir logika."
+            ).pack(pady=2, padx=10)
         ctk.CTkLabel(
             langas,
-            text="Timur Valužis EEI-5/3 | "
-            ).pack(pady=2)
+            text="Timur Valužis EEI-5/3 | Grafinės sąsajos dizainas, spalvos, paveikslėliai"
+            ).pack(pady=2, padx=10)
         ctk.CTkLabel(
             langas,
-            text="Arnas Makutėnas EEI-5/4 | "
-            ).pack(pady=2)
+            text="Arnas Makutėnas EEI-5/4 | Grafinės sąsajos pagrindas ir duomenų skaitymas"
+            ).pack(pady=2, padx=10)
 
         mygtukas = ctk.CTkButton(
             langas,
@@ -135,6 +135,7 @@ class Pradinis(ctk.CTkFrame):
             self.warning_label.configure(text="Privalote įvesti savo vardą")
             return
 
+        self.name_entry.delete(0, ctk.END)
         self.warning_label.configure(text="")
         self.controller.vardas = name
         self.controller.show_frame(Uzsakymas)
